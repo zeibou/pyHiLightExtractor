@@ -6,7 +6,7 @@ from moviepy.editor import VideoFileClip
 
 @dataclass
 class HiLightDescriptor:
-    path: str
+    name: str
     local_time: timedelta
     global_time: timedelta
 
@@ -21,14 +21,14 @@ class VideoDescriptor:
 
 def get_all_hilights(folder, startswith='G', endswith='.mp4'):
     global_time = timedelta(0)
-    for filepath in sorted(os.listdir(folder)):
-        if filepath.lower().startswith(startswith.lower()) and filepath.lower().endswith(endswith.lower()):
-            full_path = os.path.join(folder, filepath)
+    for file_name in sorted(os.listdir(folder)):
+        if file_name.lower().startswith(startswith.lower()) and file_name.lower().endswith(endswith.lower()):
+            full_path = os.path.join(folder, file_name)
             duration = VideoFileClip(full_path).duration
             hilights = HiLightFinder.find_hilights(full_path)
             for h in hilights:
                 local_time = timedelta(milliseconds=h)
-                yield HiLightDescriptor(filepath, local_time, local_time + global_time)
+                yield HiLightDescriptor(file_name, local_time, local_time + global_time)
             global_time += timedelta(seconds=duration)
 
 
