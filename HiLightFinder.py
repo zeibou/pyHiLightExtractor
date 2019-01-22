@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import timedelta
 import struct
 
 @dataclass
@@ -43,6 +44,11 @@ def find_hilights(filename):
     return ()
 
 
+def print_time(time_ms):
+    t = timedelta(milliseconds=time_ms)
+    print(t)
+
 if __name__ == '__main__':
-    file = "/Users/nicolas.seibert/Documents/foot/test_hilight/GX010056.MP4"
-    print(find_hilights(file))
+    file = "/Users/nicolas.seibert/Documents/foot/2019-01-07/GX030059.MP4"
+    for t in find_hilights(file):
+        print_time(t)
