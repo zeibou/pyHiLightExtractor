@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import timedelta
 import os
-import HiLightFinder
+from pyHiLightExtractor import HiLightFinder
 from moviepy.editor import VideoFileClip
 
 @dataclass
