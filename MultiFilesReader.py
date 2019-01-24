@@ -47,4 +47,4 @@ if __name__ == '__main__':
     for d in get_all_videos(path, endswith='.MP4'):
         print(d)
     for d in get_all_hilights(path, endswith='.MP4'):
-        print(d.path, d.local_time, d.global_time)
+        print(d.name, d.local_time, d.global_time, d.local_time.total_seconds())
